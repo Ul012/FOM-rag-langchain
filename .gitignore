@@ -1,0 +1,23 @@
+# Virtual environments
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Env files
+.env
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# Checkpoints / temporary
+*.checkpoint
+*.log
+
+# Output
+data/processed/*
