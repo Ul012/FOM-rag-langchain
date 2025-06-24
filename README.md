@@ -7,45 +7,42 @@ Dieses Repository enthält ein modulares Retrieval-Augmented Generation (RAG)-Sy
 Die Codebasis ist im Sinne guter Softwarepraxis modular aufgebaut:
 
 ```
-├── .env                    # Konfigurationswerte (nicht versioniert)
-├── main.py                # Einstiegspunkt der Anwendung
-├── config.py              # Zentrale Konfigurationsklasse (aus .env geladen)
+├── .env                         # Konfigurationswerte (nicht versioniert)
+├── requirements.txt            # Paketabhängigkeiten
+├── mkdocs.yml                  # Dokumentationskonfiguration (optional)
+├── main.py                     # Testskript zur Inferenz
+├── config.py                   # Globale Konfiguration (lädt .env)
 ├── src/
-│   ├── rag/
-│   │   ├── components/
-│   │   │   ├── chunking/           # Verschiedene Chunking-Strategien
-│   │   │   ├── embeddings/         # SLM-basierte Embedding-Komponenten
-│   │   │   ├── vector_store/       # Vektor-Datenbank (z. B. FAISS, in_memory)
-│   │   │   ├── retriever/          # Retrieval-Mechanismen
-│   │   │   └── slm/                # Sprachmodell-Anbindung (OpenAI, Qwen)
-│   │   └── pipeline/
-│   │       └── load_data.py        # Laden und Aufteilen der DSGVO-Daten
+│   ├── interface/              # Streamlit-App
+│   │   └── streamlit_app.py    # Weboberfläche
+│   ├── debug/                  # Debug- und Testskripte
+│   └── rag/
+│       ├── components/
+│       │   ├── chunking/       # Chunking-Strategien
+│       │   └── ...             # Weitere Komponenten (Embeddings, SLM, Retriever)
+│       └── pipeline/           # Aufbau der RAG-Kette
 ├── data/
-│   └── raw/               # Enthält die Beispieldatei `dsgvo_sample.txt`
-├── tests/
-│   └── ...                # Modulbezogene Unit-Tests
+│   └── raw/                    # Beispieldatei `dsgvo.txt`
+└── tools/                      # Hilfsskripte (z. B. PDF-Konvertierung)
 ```
 
 ## ✅ Aktueller Stand
 
 Folgende Komponenten sind aktuell implementiert:
 
-- Projektstruktur aufgesetzt mit `.gitignore`, `.env` und `config.py`
+- Projektstruktur mit `.gitignore`, `.env` und `config.py`
 - Chunking-Komponente (Baseline & FixedSizeChunker)
-- Testdatei `dsgvo_sample.txt` integriert
-- Datenlade- und Chunking-Logik über `load_data.py` realisiert
-- Erste Tests erfolgreich durchgeführt (Chunk-Validierung über `main.py`)
+- Beispieltext `dsgvo_sample.txt` integriert
+- Pipeline zum Laden und Chunken der Daten (`load_data.py`)
+- Erste Tests erfolgreich durchgeführt (`check_pipeline.py`)
+- Streamlit-Oberfläche lauffähig (`streamlit_app.py`)
 
 ## 🔜 Nächste Schritte
 
-Die nächsten Entwicklungsschritte umfassen:
-
-1. Implementierung der Embedding-Komponente (OpenAI, ggf. Qwen)
-2. Vektor-Datenbank: zunächst InMemoryStore, später FAISS
-3. Integration eines einfachen Retrievers (Similarity-Suche)
-4. Aufbau einer ersten RAG-Kette
-5. Einbindung einer Web-Oberfläche für die Demonstration
-6. Evaluierung verschiedener Varianten (z. B. Chunker, Top-k, Similarity)
+- Erweiterung um verschiedene Embedding-Modelle (z. B. OpenAI, Qwen)
+- Vergleich FAISS vs. InMemoryStore
+- Integration alternativer Retrievalstrategien
+- Evaluierung unterschiedlicher RAG-Konfigurationen
 
 ## ⚙️ Voraussetzungen
 
