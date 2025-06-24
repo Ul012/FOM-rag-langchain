@@ -4,7 +4,7 @@ Dieses Repository enthält ein modulares Retrieval-Augmented Generation (RAG)-Sy
 
 ## 🧱 Projektstruktur
 
-Die Codebasis ist im Sinne guter Softwarepraxis modular aufgebaut:
+Die Codebasis ist modular aufgebaut:
 
 ```
 ├── .env                         # Konfigurationswerte (nicht versioniert)
@@ -55,4 +55,4 @@ Folgende Komponenten sind aktuell implementiert:
 
 ## 🗂️ Datenbasis
 
-Die DSGVO dient als Grundlage zur Bewertung der Antwortqualität. Aktuell wird eine Auszugsdatei `dsgvo_sample.txt` verwendet. Eine vollständige Verarbeitung der gesamten Verordnung ist perspektivisch vorgesehen.
+Die vollständige DSGVO im .txt Format dient als Grundlage zur Bewertung der Antwortqualität..
