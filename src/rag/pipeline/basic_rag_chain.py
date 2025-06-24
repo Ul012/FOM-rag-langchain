@@ -1,17 +1,24 @@
 # src/rag/pipeline/basic_rag_chain.py
 
+import os
 from langchain_core.documents import Document
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 
-from config import config
+from src.config import config
 from src.rag.components.chunking.fixedsize_chunker import FixedSizeChunker
 
 
 def build_rag_chain():
+    # Absoluten Pfad zur DSGVO-Datei berechnen
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
+    file_path = os.path.join(base_dir, "data", "raw", "dsgvo.txt")
+
+    print(f"[INFO] DSGVO-Datei wird geladen von: {file_path}")
+
     # 1. Daten laden und aufteilen
-    with open("data/raw/dsgvo_sample.txt", encoding="utf-8") as f:
+    with open(file_path, encoding="utf-8") as f:
         text = f.read()
 
     chunker = FixedSizeChunker(chunk_size=300, chunk_overlap=50)
@@ -24,7 +31,7 @@ def build_rag_chain():
         api_key=config.embedding.openai_api_key
     )
 
-    # 3. Vektor-Datenbank aufbauen (zunächst FAISS oder InMemory)
+    # 3. Vektor-Datenbank aufbauen
     vectorstore = FAISS.from_documents(docs, embeddings)
 
     # 4. Retriever bauen

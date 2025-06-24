@@ -9,9 +9,9 @@ load_dotenv()
 
 @dataclass
 class SLMConfig:
-    model: str = os.getenv("LLM_MODEL", "gpt-3.5-turbo")
-    temperature: float = float(os.getenv("LLM_TEMPERATURE", "0.0"))
-    max_tokens: int = int(os.getenv("LLM_MAX_TOKENS", "512"))
+    model: str = os.getenv("SLM_MODEL", "gpt-3.5-turbo")
+    temperature: float = float(os.getenv("SLM_TEMPERATURE", "0.0"))
+    max_tokens: int = int(os.getenv("SLM_MAX_TOKENS", "512"))
     openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
     hf_token: str = os.getenv("HUGGINGFACEHUB_API_TOKEN", "")
 

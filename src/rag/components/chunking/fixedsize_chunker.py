@@ -9,7 +9,7 @@ class FixedSizeChunker:
     Kompatibel zur LangChain-TextSplitter-Konvention durch split_text().
     """
 
-    def __init__(self, chunk_size: int = 300, chunk_overlap: int = 0):
+    def __init__(self, chunk_size: int = 500, chunk_overlap: int = 0):
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
 

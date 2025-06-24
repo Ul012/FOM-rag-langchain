@@ -1,7 +1,13 @@
 # tools/convert_pdf_to_txt.py
 
-import pdfplumber
 import os
+import sys
+
+# Pfad zur Projektwurzel ergänzen, damit `from src.config import config` funktioniert
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(project_root)
+
+import pdfplumber
 
 # Dynamisch relativer Pfad zur DSGVO-Datei
 base_dir = os.path.dirname(os.path.dirname(__file__))  # geht von tools/ zurück auf Projektbasis
