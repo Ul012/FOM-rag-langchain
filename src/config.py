@@ -8,7 +8,7 @@ load_dotenv()
 
 
 @dataclass
-class LLMConfig:
+class SLMConfig:
     model: str = os.getenv("LLM_MODEL", "gpt-3.5-turbo")
     temperature: float = float(os.getenv("LLM_TEMPERATURE", "0.0"))
     max_tokens: int = int(os.getenv("LLM_MAX_TOKENS", "512"))
@@ -42,15 +42,17 @@ class WebConfig:
 
 @dataclass
 class AppConfig:
-    llm: LLMConfig = field(default_factory=LLMConfig)
+    slm: SLMConfig = field(default_factory=SLMConfig)
     embedding: EmbeddingConfig = field(default_factory=EmbeddingConfig)
     vector_store: VectorStoreConfig = field(default_factory=VectorStoreConfig)
     retrieval: RetrievalConfig = field(default_factory=RetrievalConfig)
     web: WebConfig = field(default_factory=WebConfig)
-    data_dir: str = field(default_factory=lambda: os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "data"))
+    data_dir: str = field(default_factory=lambda: os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+        "../data"))
 
     def validate(self):
-        if not self.llm.openai_api_key:
+        if not self.slm.openai_api_key:
             raise ValueError("Fehlender OpenAI API-Key. Bitte setze OPENAI_API_KEY in der .env-Datei.")
         return True
 

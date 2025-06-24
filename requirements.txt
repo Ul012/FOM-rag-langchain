@@ -1,0 +1,13 @@
+langchain
+langchain-core
+langchain-community
+langchain-openai
+python-dotenv
+tiktoken
+openai
+
+# optional
+faiss-cpu       # Falls FAISS als Vector Store vorgesehen
+streamlit       # Für geplantes UI
+mkdocs          # Für technische Dokumentation
+
